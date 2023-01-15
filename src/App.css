@@ -81,3 +81,24 @@
   font-size: 0.75rem;
   line-height: 1rem;
 }
+
+
+
+@media only screen and (max-width: 800px) {
+  body {
+    font-size: 1rem !important;
+    line-height: 4rem !important;
+    font-size: 15px !important;
+    height: 500vh;
+  }
+
+  .glow,
+  .safe {
+    font-size: 24px;
+  }
+
+  img {
+    height: 100px;
+    width: 100px;
+  }
+}

@@ -12,7 +12,7 @@ function App() {
   const DAYS_LEFT = Math.ceil(DIFF_TIME / (1000 * 60 * 60 * 24)); 
   const LEFT_DAYS_IN_MS = DAYS_LEFT * 24 * 60 * 60 * 1000;
   const NOW_IN_MS = new Date().getTime();
-  console.log(LEFT_DAYS_IN_MS)
+  console.log(LEFT_DAYS_IN_MS,'----------',DAYS_LEFT)
   const dateTimeAfterThreeDays = NOW_IN_MS + LEFT_DAYS_IN_MS;
   return (
     <div className='underRoot'>

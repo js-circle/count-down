@@ -8,11 +8,6 @@ import axios  from 'axios';
 import './App.css';
 
 // function App() {
-  const END_DATE = new Date(date)
-  const START_DATE = new Date()
-  const DIFF_TIME =  Math.abs(START_DATE - END_DATE)
-  const DAYS_LEFT = Math.ceil(DIFF_TIME / (1000 * 60 * 60 * 24)); 
-  const LEFT_DAYS_IN_S = DAYS_LEFT * 24 * 60 * 60 ;
 //   const NOW_IN_MS = new Date().getTime();
 //   console.log(LEFT_DAYS_IN_MS)
 //   return (
@@ -25,31 +20,19 @@ import './App.css';
 // }
 
 function App() {
-  const [remainingTime, setRemainingTime] = useState(LEFT_DAYS_IN_S);
+  const [remainingTime, setRemainingTime] = useState(0);
 
   useEffect(() => {
     // Get the remaining time from the server
         // Get the remaining time from the server
         axios
-        .get('https://dateserver.onrender.com/api/remaining-time')
+        .get('http://localhost:3000/api/remaining-time')
         .then(res => {
           setRemainingTime(res.data.remainingTime);
         })
         .catch(err => {
           console.log(err);
         });
-  
-      const intervalId = setInterval(() => {
-        setRemainingTime(remainingTime - 1);
-        // Save the remaining time to the server
-        axios
-          .post('https://dateserver.onrender.com/api/remaining-time', { remainingTime: remainingTime - 1 })
-          .catch(err => {
-            console.log(err);
-          });
-      }, 1000);
-  
-
     return () => clearInterval(intervalId);
   }, [remainingTime]);
 

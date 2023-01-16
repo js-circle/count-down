@@ -8,6 +8,7 @@ import axios  from 'axios';
 import './App.css';
 
 // function App() {
+
 //   const NOW_IN_MS = new Date().getTime();
 //   console.log(LEFT_DAYS_IN_MS)
 //   return (
@@ -25,14 +26,22 @@ function App() {
   useEffect(() => {
     // Get the remaining time from the server
         // Get the remaining time from the server
+
+  
+      const intervalId = setInterval(() => {
+        setRemainingTime(remainingTime - 1);
+        // Save the remaining time to the server
         axios
-        .get('http://localhost:3000/api/remaining-time')
+        .get('https://dateserver.onrender.com/api/remaining-time')
         .then(res => {
           setRemainingTime(res.data.remainingTime);
         })
         .catch(err => {
           console.log(err);
         });
+      }, 1000);
+  
+
     return () => clearInterval(intervalId);
   }, [remainingTime]);
 
